@@ -12,7 +12,7 @@ public class Tetris {
 
         System.out.println(koder(tekst));
 
-        groupif("Witajwmojejbajceslonzagranfujarce", 4);
+        groupif(koder(tekst), 4);
     }
 
     /*
@@ -101,6 +101,7 @@ public class Tetris {
         return result;
     }
 
+    //zamienia litery wedlug kodu
     public static String koder(String doZakodowania) {
         String alfabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         char[] tab1 = doZakodowania.toCharArray();
