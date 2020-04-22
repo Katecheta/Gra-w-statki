@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class MazeRunner {
 
@@ -7,14 +8,77 @@ public class MazeRunner {
         intro();
         Maze myMap = new Maze();
         myMap.printMap();
+        String move;
+        while(!myMap.didIWin()) {
+
+            boolean canIMove = false;
+            move = usserMove();
+
+            while (!canIMove) {
+                switch (move) {
+                    case "R":
+                        canIMove = myMap.canIMoveRight();
+                        System.out.println(1);
+                        break;
+                    case "L":
+                        canIMove = myMap.canIMoveLeft();
+                        System.out.println(2);
+                        break;
+                    case "U":
+                        canIMove = myMap.canIMoveUp();
+                        System.out.println(3);
+                        break;
+                    case "D":
+                        canIMove = myMap.canIMoveDown();
+                        System.out.println(4);
+                        break;
+                }// cheks move and sets canIMove is it posible
+                if (!canIMove) {
+                    System.out.println("Nie da rady. Sciana");
+                    myMap.printMap();
+                    move = usserMove();
+                }
+            }   //wywoluje ruch i sprawdza czy jest prawidłowy.
+            System.out.println(move);
+            switch (move) {
+                case "R":
+                    myMap.moveRight();
+                    break;
+                case "L":
+                    myMap.canIMoveLeft();
+                    break;
+                case "U":
+                    myMap.canIMoveUp();
+                    break;
+                case "D":
+                    myMap.canIMoveDown();
+                    break;
+
+
+            }    //  wykonanie ruchu wczesniej zatwierdzonego jako prawidlowy
+            myMap.printMap();
+        }
     }
 
     public static void intro() {
         System.out.println("Welcome to Maze Runner !\n Hear is your current position:");
     }
 
-}
+    public static String usserMove() {
+        System.out.print("Wher would you like to move? (R, L, U, D) \n Your move: ");
+        Scanner scan = new Scanner(System.in);
+        String ruch = scan.next();
+        if (ruch.equals("L") || ruch.equals("R") || ruch.equals("U") || ruch.equals("D")) {
+            return ruch;
+        } else {
+            System.out.println(" Move that you have taped is invalid. Pleas chouse one of LRUD");
+            usserMove();
+        }
+        return ruch;
+    }
 
+
+}
 
 
 
