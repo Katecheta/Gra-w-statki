@@ -40,18 +40,18 @@ public class MazeRunner {
                 }
             }   //wywoluje ruch i sprawdza czy jest prawidłowy.
             System.out.println(move);
-            switch (move) {
+            switch (move) u{
                 case "R":
                     myMap.moveRight();
                     break;
                 case "L":
-                    myMap.canIMoveLeft();
+                    myMap.moveLeft();
                     break;
                 case "U":
-                    myMap.canIMoveUp();
+                    myMap.moveUp();
                     break;
                 case "D":
-                    myMap.canIMoveDown();
+                    myMap.moveDown();
                     break;
 
 
