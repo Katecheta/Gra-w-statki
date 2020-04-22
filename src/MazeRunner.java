@@ -1,3 +1,5 @@
+
+
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -9,38 +11,50 @@ public class MazeRunner {
         Maze myMap = new Maze();
         myMap.printMap();
         String move;
-        while(!myMap.didIWin()) {
+        String czySkaczesz = "";
+        int licznik = 0;
+        while (!myMap.didIWin() || licznik < 100) {
 
             boolean canIMove = false;
             move = usserMove();
 
-            while (!canIMove) {
+
+           while (!canIMove) {
                 switch (move) {
                     case "R":
                         canIMove = myMap.canIMoveRight();
-                        System.out.println(1);
                         break;
                     case "L":
                         canIMove = myMap.canIMoveLeft();
-                        System.out.println(2);
                         break;
                     case "U":
                         canIMove = myMap.canIMoveUp();
-                        System.out.println(3);
                         break;
                     case "D":
                         canIMove = myMap.canIMoveDown();
-                        System.out.println(4);
                         break;
-                }// cheks move and sets canIMove is it posible
+                }           // cheks move and sets canIMove is it posible
                 if (!canIMove) {
-                    System.out.println("Nie da rady. Sciana");
+                    if (myMap.isThereAPit(move)) {
+                        System.out.println("Uwaga, przepasc ! Skaczesz?");
+                        if(navigatePit()){
+                            myMap.jumpOverPit(move);
+                        }else {
+                            System.out.println("jak chcesz");
+                        }
+                    }
+                    System.out.print("Nie da rady. ");
+                    if(myMap.isThereAPit(move) ) {
+                        System.out.println("Przepaść !");
+                    }else {
+                        System.out.println("Sciana");
+                    }
                     myMap.printMap();
                     move = usserMove();
-                }
-            }   //wywoluje ruch i sprawdza czy jest prawidłowy.
-            System.out.println(move);
-            switch (move) u{
+                }          //wywoluje ruch i sprawdza czy jest prawidłowy.
+            }
+
+            switch (move) {
                 case "R":
                     myMap.moveRight();
                     break;
@@ -55,9 +69,16 @@ public class MazeRunner {
                     break;
 
 
-            }    //  wykonanie ruchu wczesniej zatwierdzonego jako prawidlowy
+            }               //  wykonanie ruchu wczesniej zatwierdzonego jako prawidlowy
             myMap.printMap();
+            licznik++;
+
         }
+        if (licznik < 100) {
+            System.out.println("Brawo wygrales, zrobiles to w " + licznik + "rucharch");
+        } else
+            System.out.println("Niestety, koniec ruchów. Przegrales");
+
     }
 
     public static void intro() {
@@ -68,17 +89,40 @@ public class MazeRunner {
         System.out.print("Wher would you like to move? (R, L, U, D) \n Your move: ");
         Scanner scan = new Scanner(System.in);
         String ruch = scan.next();
-        if (ruch.equals("L") || ruch.equals("R") || ruch.equals("U") || ruch.equals("D")) {
-            return ruch;
-        } else {
+        while (!ruch.equals("R") || !ruch.equals("L") || !ruch.equals("U") || !ruch.equals("D") ){
             System.out.println(" Move that you have taped is invalid. Pleas chouse one of LRUD");
-            usserMove();
+            ruch = scan.next();
         }
         return ruch;
     }
 
+    public static void movesMessage(int licznik) {
+        switch (licznik) {
+            case 50:
+                System.out.println("zostało jeszcze 50 ruchów");
+            case 75:
+                System.out.println("zostało jeszcze 25 ruchów");
+            case 90:
+                System.out.println("zostało jeszcze 10 ruchów");
+            case 100:
+                System.out.println("Koniec !");
+        }
+    }
 
+    public static boolean navigatePit() {
+        String czySkaczesz = "";
+        Scanner scan = new Scanner(System.in);
+        czySkaczesz = scan.next();
+        if (czySkaczesz.substring(0, 1).equals("Y")){
+            return true;
+        }else
+            return false;
+
+
+    }
 }
+
+
 
 
 
