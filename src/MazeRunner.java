@@ -7,7 +7,10 @@ import java.util.Scanner;
 public class MazeRunner {
 
     public static void main(String[] args) {
+        Character a = 'a';
+        System.out.println(a);
         intro();
+        int printl;
         Maze myMap = new Maze();
         myMap.printMap();
         String move;
@@ -19,7 +22,7 @@ public class MazeRunner {
             move = usserMove();
 
 
-           while (!canIMove) {
+            while (!canIMove) {
                 switch (move) {
                     case "R":
                         canIMove = myMap.canIMoveRight();
@@ -37,16 +40,16 @@ public class MazeRunner {
                 if (!canIMove) {
                     if (myMap.isThereAPit(move)) {
                         System.out.println("Uwaga, przepasc ! Skaczesz?");
-                        if(navigatePit()){
+                        if (navigatePit()) {
                             myMap.jumpOverPit(move);
-                        }else {
+                        } else {
                             System.out.println("jak chcesz");
                         }
                     }
                     System.out.print("Nie da rady. ");
-                    if(myMap.isThereAPit(move) ) {
+                    if (myMap.isThereAPit(move)) {
                         System.out.println("Przepaść !");
-                    }else {
+                    } else {
                         System.out.println("Sciana");
                     }
                     myMap.printMap();
@@ -86,13 +89,15 @@ public class MazeRunner {
     }
 
     public static String usserMove() {
-        System.out.print("Wher would you like to move? (R, L, U, D) \n Your move: ");
+        String ruch = "";
         Scanner scan = new Scanner(System.in);
-        String ruch = scan.next();
-        while (!ruch.equals("R") || !ruch.equals("L") || !ruch.equals("U") || !ruch.equals("D") ){
-            System.out.println(" Move that you have taped is invalid. Pleas chouse one of LRUD");
-            ruch = scan.next();
-        }
+        System.out.print("Wher would you like to move? (R, L, U, D) \n Your move: ");
+        ruch = scan.next();
+            while(!ruch.equals("R") && !ruch.equals("L") && !ruch.equals("U") && !ruch.equals("D")){
+                System.out.println("try again");
+                ruch = scan.next();
+            }
+
         return ruch;
     }
 
@@ -113,9 +118,9 @@ public class MazeRunner {
         String czySkaczesz = "";
         Scanner scan = new Scanner(System.in);
         czySkaczesz = scan.next();
-        if (czySkaczesz.substring(0, 1).equals("Y")){
+        if (czySkaczesz.substring(0, 1).equals("Y")) {
             return true;
-        }else
+        } else
             return false;
 
 
