@@ -1,75 +1,92 @@
 public class Figura {
 
-    String[][] poleGry = new String[10][10]; // tablica pola gry
+    static String[][] poleGry = new String[10][10]; // tablica pola gry
 
-    int wspX1;
+    // ponizej wsporzedne tworzace calafigure
+    int wspX1;  // wspolrzedne pierwszego klocka
     int wspY1;
 
-    int wspX2;
+    int wspX2;  // wspolrzedne drugiego klocka
     int wspY2;
 
-    int wspX3;
+    int wspX3;  // wspolrzedne trzeciego klocka
     int wspY3;
 
-    int wspX4;
+    int wspX4;  // wspolrzedne czwartego klocka
     int wspY4;
 
-
-    Figura(int x) {  // Konstruktor figor
-        switch (x) {
-            case 1: {
-                wspX1 = 0;           // pierwszy dlugiKlocek
-                wspY1 = 4;
-                wspX2 = 1;
-                wspY2 = 4;
-                wspX3 = 2;
-                wspY3 = 4;
-                wspX4 = 3;
-                wspY4 = 4;
-            }
-            case 2: {
-                wspX1 = 0;           // drugi kwadrat
-                wspY1 = 4;
-                wspX2 = 1;
-                wspY2 = 4;
-                wspX3 = 0;
-                wspY3 = 5;
-                wspX4 = 1;
-                wspY4 = 5;
-            }
-        }
+    Figura() {
         zerowanie();
-    }
+    } // konstruktor domyslny
 
+    static String full = "[**]";
+    static String empty = "    ";
+
+    //-------------------------------------- ruchy figur -----------------------------------------------
     public void ruchDolu() {
+        nanoszenieFiguryNaPole(empty);
+
         wspX1 += 1;
         wspX2 += 1;
         wspX3 += 1;
         wspX4 += 1;
+
+        nanoszenieFiguryNaPole(full);
+        rysuj();
     }
 
     public void ruchPrawo() {
+        nanoszenieFiguryNaPole(empty);
         wspY1 += 1;
         wspY2 += 1;
         wspY3 += 1;
         wspY4 += 1;
+        nanoszenieFiguryNaPole(full);
+        rysuj();
     }
 
     public void ruchLewo() {
+        nanoszenieFiguryNaPole(empty);
         wspY1 -= 1;
         wspY2 -= 1;
         wspY3 -= 1;
         wspY4 -= 1;
+        nanoszenieFiguryNaPole(full);
+        rysuj();
     }
 
-    public nanoszenieFiguryNaPole() {
-        poleGry[wspX1][wspY1] = "[**]";
-        poleGry[wspX2][wspY2] = "[**]";
-        poleGry[wspX3][wspY3] = "[**]";
-        poleGry[wspX3][wspY3] = "[**]";
-        poleGry[wspX4][wspY4] = "[**]";
+    //-------------------------------------------end----------------------------------------------------
+    //------------------------------------czy mozna sie ruszyc------------------------------------------
+    public boolean czyMoznaSieRuszycWPrawo() {
+        return false;
+    }
 
-        return poleGry;
+    public boolean czyMoznaSieRuszycWlewo() {
+        return false;
+    }
+
+    public boolean czyMoznaSieRuszycWDul(){
+        return false;
+    }
+
+    //----------------------------------------obroty figur----------------------------------------------
+
+    int pozycjaFigury = 1;
+
+    public void obrut() {
+        nanoszenieFiguryNaPole(empty);
+
+
+        nanoszenieFiguryNaPole(full);
+    }
+
+    //----------------------------------------operacje na polu-------------------------------------------
+    public void nanoszenieFiguryNaPole(String nanoszenie) {
+        poleGry[wspX1][wspY1] = nanoszenie;
+        poleGry[wspX2][wspY2] = nanoszenie;
+        poleGry[wspX3][wspY3] = nanoszenie;
+        poleGry[wspX4][wspY4] = nanoszenie;
+
     }       //  nanoszenie figury na pole.
 
     public void rysuj() {
