@@ -14,11 +14,21 @@ public class Dlugi extends Figura {
     //-------------------------------------prawo---------------------------------------
     @Override
     public boolean czyMoznaSieRuszycWPrawo() {
+        if (pozycjaFigury == 1) {
+            if (wspY1 + 1 >= 10 ||
+                    poleGry[wspX1][wspY1 + 1].equals(full) ||
+                    poleGry[wspX2][wspY2 + 1].equals(full) ||
+                    poleGry[wspX3][wspY3 + 1].equals(full) ||
+                    poleGry[wspX4][wspY4 + 1].equals(full)) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {wspY1 + 1 >= 10 ||
+                poleGry[wspX1][wspY1 + 1].equals(full)){
+    return false;
+        }else true;
 
-        if (wspY1 + 1 >= 10) {
-            return false;
-        } else {
-            return true;
         }
     }
 
@@ -29,10 +39,15 @@ public class Dlugi extends Figura {
         } else
             System.out.println("Nie mozna sie ruszyc w prawo");
     }
+
     //-------------------------------------lewo----------------------------------------
     @Override
     public boolean czyMoznaSieRuszycWlewo() {
-        if (wspY4 - 1 < 0) {
+        if (wspY4 - 1 < 0 ||
+                poleGry[wspX1][wspY1 - 1].equals(full) ||
+                poleGry[wspX2][wspY2 - 1].equals(full) ||
+                poleGry[wspX3][wspY3 - 1].equals(full) ||
+                poleGry[wspX4][wspY4 - 1].equals(full)) {
             return false;
         } else {
             return true;
@@ -47,10 +62,15 @@ public class Dlugi extends Figura {
             System.out.println("Nie mozna sie ruszyc w lewo");
         }
     }
+
     //-----------------------------------dul-------------------------------------------
     @Override
     public boolean czyMoznaSieRuszycWDul() {
-        if (wspX4 + 1 >= 10) {
+        if (wspX4 + 1 >= 10 ||
+                poleGry[wspX1 + 1][wspY1].equals(full) ||
+                poleGry[wspX2 + 1][wspY2].equals(full) ||
+                poleGry[wspX3 + 1][wspY3].equals(full) ||
+                poleGry[wspX4 + 1][wspY4].equals(full)) {
             return false;
         } else {
             return true;
@@ -67,15 +87,47 @@ public class Dlugi extends Figura {
     }
     //-----------------------------------------------------------------------------------
 
-    public boolean czyMoznaObrut(){
+    public boolean czyMoznaObrut() {
+        if (pozycjaFigury == 1) {
+            return (wspX1 + 2 < 10 && wspY4 - 1 >= 0 &&
+                    poleGry[wspX1 + 2][wspY1 + 2].equals(empty) &&           // pierwszy dlugiKlocek
+                    poleGry[wspX2 + 1][wspY2 + 1].equals(empty) &&
+                    poleGry[wspX4 - 1][wspY4 - 1].equals(empty));
+        } else {
+            return (wspY4 + 1 < 10) &&
+                    poleGry[wspX1 - 2][wspY1 - 2].equals(empty) &&         // pierwszy dlugiKlocek
+                    poleGry[wspX2 - 1][wspY2 - 1].equals(empty) &&
+                    poleGry[wspX4 + 1][wspY4 + 1].equals(empty);
 
-        return false;
+        }
+
     }
-    public void obrut(){
-        if(pozycjaFigury == 1){
-                
-        }else{
 
+    @Override
+    public void obrut() {
+        if (!czyMoznaObrut()) {
+            System.out.println(" Nie mozna obrucic");
+        } else {
+            nanoszenieFiguryNaPole(empty);
+            if (pozycjaFigury == 1) {
+                wspX1 += 2;           // pierwszy dlugiKlocek
+                wspY1 += 2;
+                wspX2 += 1;
+                wspY2 += 1;
+                wspX4 -= 1;
+                wspY4 -= 1;
+                pozycjaFigury = 2;
+            } else {
+                wspX1 -= 2;           // pierwszy dlugiKlocek
+                wspY1 -= 2;
+                wspX2 -= 1;
+                wspY2 -= 1;
+                wspX4 += 1;
+                wspY4 += 1;
+                pozycjaFigury = 1;
+            }
+            nanoszenieFiguryNaPole(full);
+            rysuj();
         }
     }
 }

@@ -8,18 +8,18 @@ public class Tetris {
 
 
         Dlugi dlug = new Dlugi();
-        dlug.nanoszenieFiguryNaPole("[**]");
+        dlug.nanoszenieFiguryNaPole(Figura.full);
         dlug.rysuj();
         dlug.ruchPrawo();
-        dlug.ruchDolu();
-        dlug.ruchDolu();
-        dlug.ruchDolu();
-        dlug.ruchDolu();
-        dlug.ruchDolu();
-        dlug.ruchDolu();
-        dlug.ruchDolu();
-        dlug.ruchLewo();
+
+        dlug.ruchPrawo();
         dlug.obrut();
+        dlug.ruchPrawo();
+
+
+
+
+
 
 
 
