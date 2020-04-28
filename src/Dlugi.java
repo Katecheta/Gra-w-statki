@@ -107,7 +107,7 @@ public class Dlugi extends Figura {
 
     public boolean czyMoznaObrut() {
         if (pozycjaFigury == 1) {
-            return (wspX1 + 2 < 10 && wspY4 - 1 >= 0 &&
+            return (wspY1 + 2 < 10 && wspY4 - 1 >= 0 &&
                     poleGry[wspX1 + 2][wspY1 + 2].equals(empty) &&           // pierwszy dlugiKlocek
                     poleGry[wspX2 + 1][wspY2 + 1].equals(empty) &&
                     poleGry[wspX4 - 1][wspY4 - 1].equals(empty));

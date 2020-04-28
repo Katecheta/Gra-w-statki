@@ -9,7 +9,7 @@ public class Tetris {
         Scanner scan = new Scanner(System.in);
         String ruch;
         //----------------------------losujemy klocek ------------------------------------------------------------
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 10; i++) {
             int licznik = 0;
             while (licznik == 0) {
                 licznik = (int) Math.round((Math.random() * 1));
@@ -59,20 +59,31 @@ public class Tetris {
 
 
     public static void sprawdzCzyKasowac() {
-        for (int rzad = Figura.poleGry.length; rzad >= 0; rzad--) {
+        for (int rzad = Figura.poleGry.length - 1; rzad >= 0; rzad--) {
             int licznik = 0;
-            for (int kolumna = 0; kolumna <= Figura.poleGry.length; kolumna++) {
+            for (int kolumna = 0; kolumna <= Figura.poleGry.length - 1; kolumna++) {
                 if (Figura.poleGry[rzad][kolumna].equals(Figura.full)) {
                     licznik++;
                 }
                 if (licznik >= 10) {
                     kasuj(rzad);
+                    System.out.println("kasuj rzad" + rzad);
                 }
             }
         }
     }
 
     public static void kasuj(int rzad) {
+        for (; rzad >= 0; rzad--) {
+            for (int kolumna = 0; kolumna <= Figura.poleGry.length - 1; kolumna++) {
+                if (rzad == 0) {
+                    Figura.poleGry[rzad][kolumna] = Figura.empty;
+                } else {
+                    Figura.poleGry[rzad][kolumna] = Figura.poleGry[rzad - 1][kolumna];
+                }
+            }
+
+        }
 
     }
 
