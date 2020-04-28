@@ -16,7 +16,7 @@ public class Figura {
     int wspY4;
 
     Figura() {
-        zerowanie();
+
     } // konstruktor domyslny
 
     static String full = "[**]";
@@ -103,7 +103,7 @@ public class Figura {
         System.out.println("------------------------------------------");
     }    // metoda kotra rysuje pole gry z objektu RysujPoleGry.
 
-    public void zerowanie() {
+    public static void zerowanie() {
         for (int wiersz = 0; wiersz < poleGry.length; wiersz++) {
             for (int kolumna = 0; kolumna < poleGry.length; kolumna++) {
                 poleGry[wiersz][kolumna] = "    ";
