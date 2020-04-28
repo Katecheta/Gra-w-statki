@@ -2,42 +2,28 @@
 public class Tetris {
 
     public static void main(String[] args) {
-        //---------------------------------------Poczatek--------------------------------------------------------------------------
+        //----------------------------podstawowy objekt klocka----------------------------------------------------
+        Figura klocek = new Figura();
+        //----------------------------losujemy klocek ------------------------------------------------------------
+        for (int i = 0; i < 4; i++) {
+            switch ((int) Math.round(Math.random() * 1)) {
+                case 1:
+                    klocek = new Dlugi();
+                    break;
+                case 2:
+                    klocek = new Kwadrat();
+                    break;
+            }
+            klocek.nanoszenieFiguryNaPole(Figura.full);
+            klocek.rysuj();
 
-        //---------------------------------------Tu zaczniemu petle gry------------------------------------------------------------
-
-
-        Dlugi dlug = new Dlugi();
-        dlug.nanoszenieFiguryNaPole(Figura.full);
-        dlug.rysuj();
-        dlug.ruchPrawo();
-
-        dlug.ruchPrawo();
-        dlug.obrut();
-        dlug.ruchPrawo();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            while (Figura.czyGracDalej) {
+                klocek.ruchDolu();
+            }
+        }
     }
-
-
-
-
-
-
-
-
-
-
 }
+
+
+
+

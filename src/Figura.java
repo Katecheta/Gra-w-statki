@@ -1,7 +1,7 @@
 public class Figura {
 
     static String[][] poleGry = new String[10][10]; // tablica pola gry
-
+    static boolean czyGracDalej = true;
     // ponizej wsporzedne tworzace calafigure
     int wspX1;  // wspolrzedne pierwszego klocka
     int wspY1;

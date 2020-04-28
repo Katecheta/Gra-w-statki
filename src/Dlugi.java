@@ -24,12 +24,12 @@ public class Dlugi extends Figura {
             } else {
                 return true;
             }
-        } else {wspY1 + 1 >= 10 ||
-                poleGry[wspX1][wspY1 + 1].equals(full)){
-    return false;
-        }else true;
+        } else if (wspY1 + 1 >= 10 ||
+                poleGry[wspX1][wspY1 + 1].equals(full)) {
+            return false;
+        } else
+            return true;
 
-        }
     }
 
     @Override
@@ -43,15 +43,24 @@ public class Dlugi extends Figura {
     //-------------------------------------lewo----------------------------------------
     @Override
     public boolean czyMoznaSieRuszycWlewo() {
-        if (wspY4 - 1 < 0 ||
-                poleGry[wspX1][wspY1 - 1].equals(full) ||
-                poleGry[wspX2][wspY2 - 1].equals(full) ||
-                poleGry[wspX3][wspY3 - 1].equals(full) ||
+        if (pozycjaFigury == 1) { //przypadek dla pierwszej pozycji figury
+            if (wspY4 - 1 < 0 ||
+                    poleGry[wspX1][wspY1 - 1].equals(full) ||
+                    poleGry[wspX2][wspY2 - 1].equals(full) ||
+                    poleGry[wspX3][wspY3 - 1].equals(full) ||
+                    poleGry[wspX4][wspY4 - 1].equals(full)) {
+                return false;
+            } else {
+                return true;
+            }
+        } else if (wspY4 - 1 < 0 || //przypadek dla drugiej pozycji figury
                 poleGry[wspX4][wspY4 - 1].equals(full)) {
             return false;
         } else {
             return true;
         }
+
+
     }
 
     @Override
@@ -66,12 +75,20 @@ public class Dlugi extends Figura {
     //-----------------------------------dul-------------------------------------------
     @Override
     public boolean czyMoznaSieRuszycWDul() {
-        if (wspX4 + 1 >= 10 ||
+        if (pozycjaFigury == 1) {
+            if (wspX4 + 1 >= 10 ||
+                    poleGry[wspX4 + 1][wspY4].equals(full)) {
+                return false;
+            } else {
+                return true;
+            }
+        } else if (wspX4 + 1 >= 10 ||
                 poleGry[wspX1 + 1][wspY1].equals(full) ||
                 poleGry[wspX2 + 1][wspY2].equals(full) ||
                 poleGry[wspX3 + 1][wspY3].equals(full) ||
                 poleGry[wspX4 + 1][wspY4].equals(full)) {
             return false;
+
         } else {
             return true;
         }
@@ -83,6 +100,7 @@ public class Dlugi extends Figura {
             super.ruchDolu();
         } else {
             System.out.println("Nie mozna sie ruszyc w dul");
+            czyGracDalej = false;
         }
     }
     //-----------------------------------------------------------------------------------
