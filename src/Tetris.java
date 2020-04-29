@@ -53,13 +53,12 @@ public class Tetris {
             }
             //-------------------------------sprawdzamy czy jest cos do kasowania---------------------------------------
             sprawdzCzyKasowac();
-
         }
     }
 
 
     public static void sprawdzCzyKasowac() {
-        for (int rzad = Figura.poleGry.length - 1; rzad >= 0; rzad--) {
+        for (int rzad = 0; rzad <= Figura.poleGry.length -1; rzad++) {
             int licznik = 0;
             for (int kolumna = 0; kolumna <= Figura.poleGry.length - 1; kolumna++) {
                 if (Figura.poleGry[rzad][kolumna].equals(Figura.full)) {
