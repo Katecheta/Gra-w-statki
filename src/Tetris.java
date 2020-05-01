@@ -9,24 +9,26 @@ public class Tetris {
         Scanner scan = new Scanner(System.in);
         String ruch;
         //----------------------------losujemy klocek ------------------------------------------------------------
-        for (int i = 0; i < 10; i++) {
+        while (!Figura.poleGry[0][4].equals(Figura.full)) {
             int licznik = 0;
             while (licznik == 0) {
-                licznik = (int) Math.round((Math.random() * 1));
+                licznik = (int) Math.round((Math.random() * 3));
             }
 
             switch (licznik) {
-                case 1:
+                case 2:
                     klocek = new Dlugi();
                     break;
-                case 2:
+                case 3:
                     klocek = new Kwadrat();
                     break;
+                case 1:
+                    klocek = new  Teewee();
             }
             //----------------------------------------------------------------------------------------------
             Figura.czyGracDalej = true;
             klocek.nanoszenieFiguryNaPole(Figura.full);
-            klocek.rysuj();
+            klocek.ruchDolu();
             //-----------------------------faza pojedynczego klocka---------------------------------------
             while (Figura.czyGracDalej) {
                 ruch = scan.nextLine();
@@ -60,7 +62,7 @@ public class Tetris {
     public static void sprawdzCzyKasowac() {
         for (int rzad = 0; rzad <= Figura.poleGry.length -1; rzad++) {
             int licznik = 0;
-            for (int kolumna = 0; kolumna <= Figura.poleGry.length - 1; kolumna++) {
+            for (int kolumna = 0; kolumna <= Figura.poleGry[0].length - 1; kolumna++) {
                 if (Figura.poleGry[rzad][kolumna].equals(Figura.full)) {
                     licznik++;
                 }

@@ -1,6 +1,6 @@
 public class Figura {
 
-    static String[][] poleGry = new String[10][10]; // tablica pola gry
+    static String[][] poleGry = new String[20][10]; // tablica pola gry
     static boolean czyGracDalej = true;
     // ponizej wsporzedne tworzace calafigure
     int wspX1;  // wspolrzedne pierwszego klocka
@@ -95,7 +95,7 @@ public class Figura {
 
         for (int rzad = 0; rzad < poleGry.length; rzad++) {
             System.out.print("|");
-            for (int kolumna = 0; kolumna < poleGry.length; kolumna++) {
+            for (int kolumna = 0; kolumna < poleGry[0].length; kolumna++) {
                 System.out.print(poleGry[rzad][kolumna]);
             }
             System.out.println("|");
@@ -105,7 +105,7 @@ public class Figura {
 
     public static void zerowanie() {
         for (int wiersz = 0; wiersz < poleGry.length; wiersz++) {
-            for (int kolumna = 0; kolumna < poleGry.length; kolumna++) {
+            for (int kolumna = 0; kolumna < poleGry[0].length; kolumna++) {
                 poleGry[wiersz][kolumna] = "    ";
             }
         }

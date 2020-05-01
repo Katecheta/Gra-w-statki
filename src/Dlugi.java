@@ -15,7 +15,7 @@ public class Dlugi extends Figura {
     @Override
     public boolean czyMoznaSieRuszycWPrawo() {
         if (pozycjaFigury == 1) {
-            if (wspY1 + 1 >= 10 ||
+            if (wspY1 + 1 >= poleGry[0].length ||
                     poleGry[wspX1][wspY1 + 1].equals(full) ||
                     poleGry[wspX2][wspY2 + 1].equals(full) ||
                     poleGry[wspX3][wspY3 + 1].equals(full) ||
@@ -24,7 +24,7 @@ public class Dlugi extends Figura {
             } else {
                 return true;
             }
-        } else if (wspY1 + 1 >= 10 ||
+        } else if (wspY1 + 1 >= poleGry[0].length ||
                 poleGry[wspX1][wspY1 + 1].equals(full)) {
             return false;
         } else
@@ -76,13 +76,13 @@ public class Dlugi extends Figura {
     @Override
     public boolean czyMoznaSieRuszycWDul() {
         if (pozycjaFigury == 1) {
-            if (wspX4 + 1 >= 10 ||
+            if (wspX4 + 1 >= poleGry.length ||
                     poleGry[wspX4 + 1][wspY4].equals(full)) {
                 return false;
             } else {
                 return true;
             }
-        } else if (wspX4 + 1 >= 10 ||
+        } else if (wspX4 + 1 >= poleGry.length ||
                 poleGry[wspX1 + 1][wspY1].equals(full) ||
                 poleGry[wspX2 + 1][wspY2].equals(full) ||
                 poleGry[wspX3 + 1][wspY3].equals(full) ||
