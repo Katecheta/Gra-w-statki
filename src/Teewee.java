@@ -7,6 +7,7 @@ public class Teewee extends Figura {
         wspX3 = 1;
         wspY3 = 3;
         wspX4 = 1;
+        wspX4 = 1;
         wspY4 = 5;
     }
 
